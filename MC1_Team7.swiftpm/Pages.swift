@@ -95,6 +95,8 @@ struct Page6: View {
                 speechMsg(msg: "하지만 리버는")
             } else if layerIndex == 2 {
                 speechMsg(msg: "사람들의 생각과 좀 달랐어요.")
+            } else if layerIndex == 4 {
+                playSound(filename: "6_4_aah")
             }
         }
     }
@@ -137,7 +139,14 @@ struct Page9: View {
     var body: some View {
         ZStack {
             imageLayer(layerIndex: $layerIndex, images: imgPage9)
-            if layerIndex == 6 {
+            if layerIndex == 3 {
+                playSound(filename: "9_3_effect")
+            } else if layerIndex == 4 {
+                playSound(filename: "9_3_effect")
+            } else if layerIndex == 5 {
+                playSound(filename: "9_3_effect")
+            } else if layerIndex == 6 {
+                playSound(filename: "9_3_effect")
                 speechMsg(msg: "그렇게, 임무를 맡은 단디버거는,")
             } else if layerIndex == 7 {
                 speechMsg(msg: "여러 툴들을 만나보기로 했답니다.")
@@ -209,10 +218,10 @@ struct Page14: View {
     var body: some View {
         ZStack {
             imageLayer(layerIndex: $layerIndex, images: imgPage14)
-            if layerIndex == 1 {
+            if layerIndex == 2 {
                 speechMsg(msg: "그때 옆 동네 포스텍이 나타났어요.")
             }
-            else if layerIndex == 2 {
+            else if layerIndex == 3 {
                 speechMsg(msg: "포스텍은 팀즈라는 마이크로소프트의 툴을 데리고 왔답니다.")
             }
         }
@@ -232,6 +241,7 @@ struct Page15: View {
             }
             else if layerIndex == 6 {
                 speechMsg(msg: "쟤가 M사 출신이라며? 처음 보는 툴인데?")
+                playSound(filename: "15_6_yayu")
             }
         }
     }
@@ -269,6 +279,7 @@ struct Page17: View {
                 speechMsg(msg: "팀즈는 말했어요...")
             } else if layerIndex == 3 {
                 speechMsg(msg: "난 돈 욕심 없어!")
+                playSound(filename: "17_3_fanfare")
             }
         }
     }
@@ -293,8 +304,15 @@ struct Page19: View {
             imageLayer(layerIndex: $layerIndex, images: imgPage19)
             if layerIndex == 2 {
                 speechMsg(msg: "단디버거는 툴들의 역할을 공정하게 분배하고")
+            } else if layerIndex == 3 {
+                playSound(filename: "19_3_effect")
+            } else if layerIndex == 4 {
+                playSound(filename: "19_3_effect")
+            } else if layerIndex == 5 {
+                playSound(filename: "19_3_effect")
             } else if layerIndex == 6 {
                 speechMsg(msg: "사과농부들에게 툴들의 쓰임새를 알려줬어요.")
+                playSound(filename: "19_3_effect")
             }
         }
     }
@@ -318,6 +336,7 @@ struct Page21: View {
                 speechMsg(msg: "그렇게 아이팜에는")
             } else if layerIndex == 2 {
                 speechMsg(msg: "다시 평화가 찾아왔습니다~~~")
+                playSound(filename: "1_1_bird")
             }
         }
     }
@@ -327,7 +346,10 @@ struct Page22: View {
     @State var layerIndex = 0
     var body: some View {
         ZStack {
-            imageLayer(layerIndex: $layerIndex, images: imgPage22)
+            imageLayer(layerIndex: $layerIndex, images:  imgPage22)
+            if layerIndex == 1 {
+                playSound(filename: "22_1_endsong")
+            }
         }
     }
 }
