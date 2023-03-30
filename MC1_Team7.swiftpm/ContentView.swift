@@ -1,9 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentPage = 0
-    var pages = [AnyView(Page0()),
-                 AnyView(Page1()),
+    @State private var clickButton = false
+    var body: some View {
+        ZStack {
+            Image("0_1").resizable()
+            Image("0_2").resizable()
+                .onTapGesture {
+                    self.clickButton.toggle()
+                }
+            if clickButton {
+                SwipePageView()
+            }
+        }
+    }
+}
+
+struct SwipePageView: View {
+    var pages = [AnyView(Page1()),
                  AnyView(Page2()),
                  AnyView(Page3()),
                  AnyView(Page4()),
@@ -25,7 +39,8 @@ struct ContentView: View {
                  AnyView(Page20()),
                  AnyView(Page21()),
                  AnyView(Page22())]
-
+    
+    @State private var currentPage = 0
     var body: some View {
         VStack {
             TabView(selection: $currentPage) {
@@ -35,13 +50,6 @@ struct ContentView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            HStack(spacing: 0) {
-                ForEach(Array(0..<pages.count), id: \.self) { index in
-                    if currentPage == index {
-                        Text(String(index))
-                    }
-                }
-            }
         }
     }
 }

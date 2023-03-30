@@ -15,8 +15,6 @@ func imageLayer(layerIndex: Binding<Int>, images: Array<String>) -> some View {
             Image(images[index])
                 .resizable()
                 .opacity(layerIndex.wrappedValue >= index ? 1 : 0)
-//                .animation(.easeInOut(duration: 1.0))
-//                .animation(.linear(duration: 0.5))
                 .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 10.0, initialVelocity: 0.0))
         }
     }
@@ -37,11 +35,15 @@ func speechMsg(msg: String) -> some View {
     return(Text("").onAppear{ synthesizer.speak(utterance)})
 }
 
-func speechMsg2(msg: String) -> some View {
-    let utterance = AVSpeechUtterance(string: msg)
-    utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
-    utterance.pitchMultiplier = 1.7
-    utterance.rate = 0.7
-    
-    return(Text("").onAppear{ synthesizer.speak(utterance)})
+func playSound(filename: String) -> some View {
+    var audioPlayer: AVAudioPlayer?
+    if let path = Bundle.main.path(forResource: filename, ofType: "mp3") {
+        let url = URL(fileURLWithPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            //error handler
+        }
+    }
+    return(Text("").onAppear{ audioPlayer?.play() })
 }
